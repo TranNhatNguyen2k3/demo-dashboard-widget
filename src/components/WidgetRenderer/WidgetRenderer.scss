@@ -1,0 +1,25 @@
+// Ensure WidgetRenderer and its children fill the parent widget
+.widget-renderer-root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.widget-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  text-align: center;
+  h3 {
+    color: #d32f2f;
+    margin-bottom: 8px;
+  }
+  p {
+    color: #666;
+    margin: 0;
+  }
+}
