@@ -157,14 +157,21 @@ const TimeSeriesChart = ({ ctx, templateHtml, templateCss }) => {
   }, [chartData, ctx]);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (chartInstance.current) {
-        chartInstance.current.resize();
+    // Resize chart when parent changes size
+    let resizeObserver;
+    if (chartRef.current) {
+      resizeObserver = new window.ResizeObserver(() => {
+        if (chartInstance.current) {
+          chartInstance.current.resize();
+        }
+      });
+      resizeObserver.observe(chartRef.current);
+    }
+    return () => {
+      if (resizeObserver && chartRef.current) {
+        resizeObserver.unobserve(chartRef.current);
       }
     };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (

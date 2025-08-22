@@ -1,0 +1,25 @@
+.action-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.action-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+.action-button-icon {
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+.action-button-label {
+  display: inline-block;
+}

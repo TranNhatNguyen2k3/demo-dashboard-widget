@@ -1,0 +1,35 @@
+.toggle-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #eee;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.toggle-button.checked {
+  background: #1976d2;
+  color: #fff;
+}
+.toggle-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+.toggle-indicator {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  margin-right: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+.toggle-button.checked .toggle-indicator {
+  background: #1976d2;
+}
+.toggle-label {
+  display: inline-block;
+}

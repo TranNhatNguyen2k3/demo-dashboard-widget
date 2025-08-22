@@ -44,11 +44,9 @@ export class WidgetParser {
       console.log('TemplateHtml is invalid:', templateHtml);
       return null;
     }
-    
     // Match tb-*-widget pattern
     const match = templateHtml.match(/tb-([\w-]+)-widget/);
     console.log('Regex match result:', match);
-    
     if (match) {
       const fullSelector = match[0]; // e.g., "tb-time-series-chart-widget"
       console.log('Found widget selector:', fullSelector);
@@ -56,7 +54,17 @@ export class WidgetParser {
       console.log('Mapped widget type:', WIDGET_TYPES[fullSelector]);
       return WIDGET_TYPES[fullSelector] || null;
     }
-    console.log('No widget selector found in template');
+    // Fallback: check for <canvas id="barChart">, <canvas id="pieChart">, ...
+    const canvasMatch = templateHtml.match(/<canvas[^>]*id=["']([\w-]+)["'][^>]*>/);
+    if (canvasMatch) {
+      const id = canvasMatch[1];
+      // Map id to widget type
+      if (id === 'barChart') return 'BarChart';
+      if (id === 'pieChart') return 'PieChart';
+      if (id === 'doughnutChart') return 'DoughnutChart';
+      // Add more mappings as needed
+    }
+    console.log('No widget selector or canvas id found in template');
     console.log('=== END DEBUG ===');
     return null;
   }
