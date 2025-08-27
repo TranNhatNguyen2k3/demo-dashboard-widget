@@ -36,7 +36,10 @@ export const useWidgetRenderer = (widgetDescriptor) => {
             const processedDataKeys = await Promise.all(
               datasource.dataKeys.map(async (dataKey) => {
                 let data;
-                if (datasource.type === 'function') {
+                if (Array.isArray(dataKey.data) && dataKey.data.length > 0) {
+                  // Nếu đã có dữ liệu cứng, giữ nguyên
+                  data = dataKey.data;
+                } else if (datasource.type === 'function') {
                   data = await DataService.generateMockData(dataKey);
                 } else {
                   data = await DataService.fetchRealData(datasource);

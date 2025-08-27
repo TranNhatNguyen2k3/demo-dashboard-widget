@@ -9,6 +9,8 @@ export const WIDGET_TYPES = {
   'tb-action-button-widget': 'ActionButton',
   'tb-toggle-button-widget': 'ToggleButton',
   'tb-command-button-widget': 'CommandButton',
+  'tb-real-time-demo-widget': 'RealTimeDemo',
+  'tb-power-consumption-widget': 'PowerConsumption',
   // Add more mappings as needed
 };
 
@@ -22,6 +24,8 @@ import LedIndicator from '../components/Widgets/LedIndicator/LedIndicator';
 import ActionButton from '../components/Widgets/ActionButton/ActionButton';
 import ToggleButton from '../components/Widgets/ToggleButton/ToggleButton';
 import CommandButton from '../components/Widgets/CommandButton/CommandButton';
+import RealTimeDemo from '../components/Widgets/RealTimeDemo/RealTimeDemo';
+import PowerConsumption from '../components/Widgets/PowerConsumption/PowerConsumption';
 
 export const WIDGET_COMPONENTS = {
   TimeSeriesChart,
@@ -33,5 +37,7 @@ export const WIDGET_COMPONENTS = {
   LedIndicator,
   ActionButton,
   ToggleButton,
-  CommandButton
+  CommandButton,
+  RealTimeDemo,
+  PowerConsumption
 };

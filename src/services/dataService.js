@@ -35,9 +35,9 @@ export class DataService {
   }
 
   static async fetchRealData(datasource) {
-    // In real app, call your API here
+    // Call Go backend API
     try {
-      const response = await axios.post('/api/telemetry/timeseries', {
+      const response = await axios.post('http://localhost:8080/api/v1/telemetry/timeseries', {
         deviceId: datasource.deviceId,
         keys: datasource.dataKeys.map(k => k.name),
         startTs: Date.now() - 3600000,
@@ -45,9 +45,21 @@ export class DataService {
         interval: 60000
       });
       
-      return response.data;
+      if (response.data.success && response.data.data) {
+        // Convert backend format to frontend format
+        const backendData = response.data.data.data;
+        const frontendData = [];
+        
+        // Get the first available key for now
+        const firstKey = Object.keys(backendData)[0];
+        if (firstKey && backendData[firstKey]) {
+          return backendData[firstKey];
+        }
+      }
+      
+      return this.generateMockData(datasource.dataKeys[0]);
     } catch (error) {
-      console.error('Error fetching real data:', error);
+      console.error('Error fetching real data from Go backend:', error);
       // Fallback to mock data
       return this.generateMockData(datasource.dataKeys[0]);
     }

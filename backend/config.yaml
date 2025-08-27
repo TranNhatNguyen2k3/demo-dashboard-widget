@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  host: localhost
+
+cors:
+  enabled: true
+
+websocket:
+  enabled: true
+
+telemetry:
+  simulation_interval: 1000ms
+  devices:
+    - id: "device_001"
+      name: "Temperature Sensor 1"
+      type: "sensor"
+      location: "Room A"
+    - id: "device_002"
+      name: "Humidity Sensor 1"
+      type: "sensor"
+      location: "Room A"
+    - id: "device_003"
+      name: "Power Meter 1"
+      type: "meter"
+      location: "Electrical Room"
+    - id: "device_004"
+      name: "Water Flow Sensor 1"
+      type: "sensor"
+      location: "Pump Station"
+
+logging:
+  level: info
+  format: json

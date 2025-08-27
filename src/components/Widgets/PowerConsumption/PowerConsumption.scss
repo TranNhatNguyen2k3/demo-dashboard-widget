@@ -1,0 +1,279 @@
+.power-consumption {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 20px;
+  color: white;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+
+  .widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .connection-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+
+        &.connected {
+          background-color: #4CAF50;
+          box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+
+        &.disconnected {
+          background-color: #f44336;
+        }
+      }
+    }
+  }
+
+  .main-power-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+
+    .power-value {
+      text-align: center;
+
+      .value {
+        display: block;
+        font-size: 32px;
+        font-weight: 700;
+        color: #FFD700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .label {
+        font-size: 14px;
+        opacity: 0.8;
+      }
+    }
+
+    .power-status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .status-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        box-shadow: 0 0 10px currentColor;
+      }
+
+      span {
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 25px;
+
+    .value-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      backdrop-filter: blur(5px);
+
+      .label {
+        display: block;
+        font-size: 12px;
+        opacity: 0.7;
+        margin-bottom: 5px;
+      }
+
+      .value {
+        display: block;
+        font-size: 18px;
+        font-weight: 600;
+        color: #FFD700;
+      }
+    }
+  }
+
+  .efficiency-section {
+    margin-bottom: 25px;
+
+    .metric {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+
+      .label {
+        font-size: 14px;
+        min-width: 100px;
+        opacity: 0.9;
+      }
+
+      .progress-bar {
+        flex: 1;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        overflow: hidden;
+
+        .progress-fill {
+          height: 100%;
+          background: linear-gradient(90deg, #4CAF50, #8BC34A);
+          transition: width 0.5s ease;
+          border-radius: 4px;
+        }
+      }
+
+      .value {
+        font-size: 14px;
+        font-weight: 600;
+        min-width: 50px;
+        text-align: right;
+        color: #FFD700;
+      }
+    }
+  }
+
+  .usage-chart {
+    margin-bottom: 20px;
+
+    h4 {
+      font-size: 14px;
+      margin: 0 0 15px 0;
+      opacity: 0.9;
+    }
+
+    .chart-container {
+      height: 80px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 10px;
+      backdrop-filter: blur(5px);
+
+      .chart-bars {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        height: 100%;
+        gap: 2px;
+
+        .chart-bar {
+          flex: 1;
+          background: linear-gradient(to top, #FFD700, #FFA000);
+          border-radius: 2px 2px 0 0;
+          transition: height 0.3s ease;
+          min-height: 4px;
+          cursor: pointer;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+
+      .no-data {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        font-size: 12px;
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .last-update {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    opacity: 0.7;
+
+    .error {
+      color: #ff6b6b;
+    }
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    padding: 15px;
+
+    .main-power-display {
+      flex-direction: column;
+      gap: 15px;
+      text-align: center;
+
+      .power-value .value {
+        font-size: 28px;
+      }
+    }
+
+    .values-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .efficiency-section .metric {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+
+      .label {
+        min-width: auto;
+      }
+
+      .value {
+        min-width: auto;
+        text-align: center;
+      }
+    }
+  }
+
+  // Animation for real-time updates
+  .power-value .value,
+  .value-item .value {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  // Hover effects
+  .value-item:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+  }
+
+  .chart-bar:hover {
+    transform: scaleY(1.1);
+    transition: transform 0.2s ease;
+  }
+}
